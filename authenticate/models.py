@@ -9,7 +9,8 @@ from sqlachemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
-def User(Base):
+
+class User(Base):
     """
     User Model
     """
@@ -24,3 +25,13 @@ def User(Base):
     phone = Column(String)
 
 
+class Organisation(Base):
+    """
+    Organisation Model
+    """
+
+    __tablename__ = "organisation"
+
+    orgId = Column(String, unique=True, primary_key=True)
+    name = Column(String, nullable=False)
+    description = Column(String)
