@@ -16,7 +16,7 @@ def User(Base):
 
     __tablename__ = "users"
 
-    userId = Column(String, unique=True, primary_key=True)
+    userId = Column(String, unique=True, primary_key=True, index=True)
     firstName = Column(String, nullable=False)
     lastName = Column(String, nullable=False)
     email = Column(String, nullable=False, unique=True)
