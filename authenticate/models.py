@@ -4,34 +4,40 @@
 User Model
 """
 
-from sqlalchemy import Column, Integer, String
-from sqlachemy.ext.declarative import declarative_base
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask
+from config import Config
 
-Base = declarative_base()
+
+app = Flask(__name__)
+app.config.from_object(Config)
+db = SQLAlchemy(app)
 
 
-class User(Base):
+class User(db.Model):
     """
     User Model
     """
 
     __tablename__ = "users"
 
-    userId = Column(String, unique=True, primary_key=True, index=True)
-    firstName = Column(String, nullable=False)
-    lastName = Column(String, nullable=False)
-    email = Column(String, nullable=False, unique=True)
-    password = Column(String, nullable=False)
-    phone = Column(String)
+    userId = db.Column(db.String, unique=True, primary_key=True, index=True)
+    firstName = db.Column(db.String, nullable=False)
+    lastName = db.Column(db.String, nullable=False)
+    email = db.Column(db.String, nullable=False, unique=True)
+    password = db.Column(db.String, nullable=False)
+    phone = db.Column(db.String)
 
 
-class Organisation(Base):
+class Organisation(db.Model):
     """
     Organisation Model
     """
 
     __tablename__ = "organisation"
 
-    orgId = Column(String, unique=True, primary_key=True)
-    name = Column(String, nullable=False)
-    description = Column(String)
+    orgId = db.Column(db.String, unique=True, primary_key=True)
+    name = db.Column(db.String, nullable=False)
+    description = db.Column(db.String)
+    user_id = db.Column(db.String, db.ForeignKey('user.userId'))
+    user = db.relationship('User', backref=db.backref('organisations', lazy=True))
