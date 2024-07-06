@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 """
+Initialises the app
 """
 
 from flask_sqlalchemy import SQLAlchemy
