@@ -1,18 +1,23 @@
 {
-    "builds": [
-      {
-        "src": "manage.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "run.py",
-        "use": "@vercel/python"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "run.py"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/migrate.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "run.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/migrate",
+      "dest": "/api/migrate.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "run.py"
+    }
+  ]
+}
