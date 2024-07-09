@@ -23,7 +23,7 @@ def register():
     data = request.get_json()
 
     #Validate required fields
-    required_fields = ['firstName', 'lastName', 'email', 'password', 'phone']
+    required_fields = ['firstName', 'lastName', 'email', 'password']
     invalid_response = {"errors":[]}
 
     for field in required_fields:
@@ -47,7 +47,7 @@ def register():
             lastName=data['lastName'],
             email=data['email'],
             password=generate_password_hash(data['password']),
-            phone=data['phone']
+            phone=data.get('phone', ''),
         )
 
         org = Organisation(
