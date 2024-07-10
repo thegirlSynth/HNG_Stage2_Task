@@ -53,7 +53,7 @@ def register():
         org = Organisation(
             orgId=generate_uuid(),
             name=f"{user.firstName}'s Organisation",
-            description=f"This Organisation was created by {user.firstName}",
+            description="",
         )
 
         user.organisations.append(org)
