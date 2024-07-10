@@ -38,7 +38,7 @@ def register():
 
     #Check if email already exists
     if User.query.filter_by(email=data["email"]).first():
-        return error_response("Registration unsuccessful", 401)
+        return error_response("Registration unsuccessful", 400)
 
     try:
         user = User(
